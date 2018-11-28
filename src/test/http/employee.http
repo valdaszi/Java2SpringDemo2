@@ -1,0 +1,49 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+POST http://localhost:8080/spring2/employee
+Accept: application/json
+Content-Type: application/json
+
+{
+  "birthDate": "2000-01-01",
+  "firstName": "Jonas",
+  "lastName": "Jonaitis",
+  "gender": "M",
+  "hireDate": "2018-01-02"
+}
+
+###
+
+GET http://localhost:8080/spring2/employee/500023
+Accept: application/json
+
+###
+
+PUT http://localhost:8080/spring2/employee/500023
+Accept: application/json
+Content-Type: application/json
+
+{
+  "birthDate": "2000-01-02",
+  "firstName": "Jąnč",
+  "lastName": "Žšęmūtė",
+  "gender": "M",
+  "hireDate": "2018-01-02"
+}
+
+###
+
+GET http://localhost:8080/spring2/employee/list?page=250&size=3
+Accept: application/json
+
+###
+
+GET http://localhost:8080/spring2/employee/hire/1985-05-16
+Accept: application/json
+
+###
