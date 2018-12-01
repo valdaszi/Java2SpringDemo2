@@ -3,15 +3,12 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/data/jpa
-        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd"
+        http://www.springframework.org/schema/context/spring-context.xsd"
 >
 
     <context:component-scan base-package="lt.bta.java2" />
@@ -21,9 +18,6 @@
     <mvc:annotation-driven />
 
     <mvc:default-servlet-handler />
-
-    <!-- https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.create-instances -->
-    <!--<jpa:repositories base-package="lt.bta.java2.repositories" />-->
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
@@ -36,6 +30,7 @@
                 <value>WRITE_DATES_AS_TIMESTAMPS</value>
             </array>
         </property>
+        <property name="serializationInclusion" value="NON_NULL"/>
         <property name="modulesToInstall" value="com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module" />
     </bean>
 

@@ -47,3 +47,13 @@ GET http://localhost:8080/spring2/employee/hire/1985-05-16
 Accept: application/json
 
 ###
+
+GET http://localhost:8080/spring2/employee/salary/1985-05-16
+Accept: application/json
+
+###
+
+GET http://localhost:8080/spring2/employee/salary-page/1985-05-16?page=10&size=5
+Accept: application/json
+
+###

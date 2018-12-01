@@ -2,6 +2,7 @@ package lt.bta.java2.service;
 
 import lt.bta.java2.model.Employee;
 import lt.bta.java2.repositories.EmployeeRepository;
+import lt.bta.java2.response.EmployeeSalary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -50,6 +51,17 @@ public class EmployeeService {
     @GetMapping("/hire/{hireDate}")
     public ResponseEntity<List<Employee>> getBySku(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hireDate) {
         return ResponseEntity.ok(employeeRepository.findByHireDate(hireDate));
+    }
+
+    @GetMapping("/salary/{date}")
+    public ResponseEntity<List<EmployeeSalary>> employeeSalaryForDate(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return ResponseEntity.ok(employeeRepository.employeeSalaryForDate(date));
+    }
+
+    @GetMapping("/salary-page/{date}")
+    public Page<EmployeeSalary> employeeSalaryForDate(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+                                                      @RequestParam int page, @RequestParam int size) {
+        return employeeRepository.employeeSalaryForDatePage(date, PageRequest.of(page, size));
     }
 
 }
