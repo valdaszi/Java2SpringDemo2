@@ -10,6 +10,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "employees")
+@NamedQuery(name = "Employee.fetchLikeLastName",
+        query = "SELECT e FROM Employee e WHERE lower(e.lastName) LIKE concat('%',:lastName,'%')")
 public class Employee {
     private int empNo;
     private LocalDate birthDate;

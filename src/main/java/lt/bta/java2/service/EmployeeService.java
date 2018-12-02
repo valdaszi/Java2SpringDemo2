@@ -64,4 +64,9 @@ public class EmployeeService {
         return employeeRepository.employeeSalaryForDatePage(date, PageRequest.of(page, size));
     }
 
+    @GetMapping("/like")
+    public List<Employee> employeeLikeLastName(@RequestParam("name") String lastName) {
+        return employeeRepository.fetchLikeLastName(lastName);
+    }
+
 }

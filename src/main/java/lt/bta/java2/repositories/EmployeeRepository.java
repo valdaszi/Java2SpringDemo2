@@ -29,4 +29,6 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
     Page<EmployeeSalary> employeeSalaryForDatePage(@Param("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
                                                Pageable pageable);
 
+    List<Employee> fetchLikeLastName(@Param("lastName") String lastName);
+
 }
