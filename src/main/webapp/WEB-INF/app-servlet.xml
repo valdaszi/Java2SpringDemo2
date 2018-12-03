@@ -1,68 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd"
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd"
 >
 
     <context:component-scan base-package="lt.bta.java2" />
 
     <context:annotation-config />
 
-    <mvc:default-servlet-handler />
+    <!-- MVC konfiguruojamas MvcConfig.java -->
 
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value=".jsp"/>
+
+    <!-- JPA -->
+
+    <!-- 1) aprašome čia: -->
+    <!--
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/employees?useUnicode=yes&amp;characterEncoding=UTF-8"/>
+        <property name="username" value="java2"/>
+        <property name="password" value="123"/>
     </bean>
 
+    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="showSql" value="true"/>
+        <property name="generateDdl" value="true"/>
+        <property name="database" value="MYSQL"/>
+    </bean>
 
-    <!-- 1) Aprasome Jackson2ObjectMapperFactoryBean ir 'mvc:annotation-driven' su 'mvc:message-converters': -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+        <property name="packagesToScan" value="lt.bta.java2.model"/>
+    </bean>
 
-    <!--<bean id="customObjectMapper" class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">-->
-        <!--<property name="featuresToDisable">-->
-            <!--<array value-type="com.fasterxml.jackson.databind.SerializationFeature">-->
-                <!--<value>WRITE_DATES_AS_TIMESTAMPS</value>-->
-            <!--</array>-->
-        <!--</property>-->
-        <!--<property name="serializationInclusion" value="NON_NULL"/>-->
-        <!--<property name="modulesToInstall" value="com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module" />-->
-    <!--</bean>-->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>
 
-    <!--<mvc:annotation-driven>-->
-        <!--<mvc:message-converters>-->
-            <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
-                <!--<property name="objectMapper" ref="customObjectMapper"/>-->
-            <!--</bean>-->
-        <!--</mvc:message-converters>-->
-    <!--</mvc:annotation-driven>-->
+    <jpa:repositories base-package="lt.bta.java2.repositories" />
+    -->
 
-
-    <!-- 2) Arba galima viską vienoje vietoje aprašyti (truputi kitaip nurodyta savybės 'featuresToDisable' reikšmė: -->
-
-    <!--<mvc:annotation-driven>-->
-        <!--<mvc:message-converters>-->
-            <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
-                <!--<property name="objectMapper">-->
-                    <!--<bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">-->
-                        <!--<property name="featuresToDisable">-->
-                            <!--<array>-->
-                                <!--<util:constant static-field="com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS"/>-->
-                            <!--</array>-->
-                        <!--</property>-->
-                        <!--<property name="modulesToInstall" value="com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module" />-->
-                    <!--</bean>-->
-                <!--</property>-->
-            <!--</bean>-->
-        <!--</mvc:message-converters>-->
-    <!--</mvc:annotation-driven>-->
-
-    <!-- 3) Arba galima aprayti JacksonConfig.java -->
+    <!-- 2) Arba PersistenceJPAConfig.java -->
 
 </beans>
