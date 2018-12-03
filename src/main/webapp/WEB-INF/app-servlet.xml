@@ -15,8 +15,6 @@
 
     <context:annotation-config />
 
-    <mvc:annotation-driven />
-
     <mvc:default-servlet-handler />
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -24,44 +22,47 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <bean id="customObjectMapper" class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
-        <property name="featuresToDisable">
-            <array value-type="com.fasterxml.jackson.databind.SerializationFeature">
-                <value>WRITE_DATES_AS_TIMESTAMPS</value>
-            </array>
-        </property>
-        <property name="serializationInclusion" value="NON_NULL"/>
-        <property name="modulesToInstall" value="com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module" />
-    </bean>
 
-    <mvc:annotation-driven>
-        <mvc:message-converters>
-            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                <property name="objectMapper" ref="customObjectMapper"/>
-            </bean>
-        </mvc:message-converters>
-    </mvc:annotation-driven>
+    <!-- 1) Aprasome Jackson2ObjectMapperFactoryBean ir 'mvc:annotation-driven' su 'mvc:message-converters': -->
+
+    <!--<bean id="customObjectMapper" class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">-->
+        <!--<property name="featuresToDisable">-->
+            <!--<array value-type="com.fasterxml.jackson.databind.SerializationFeature">-->
+                <!--<value>WRITE_DATES_AS_TIMESTAMPS</value>-->
+            <!--</array>-->
+        <!--</property>-->
+        <!--<property name="serializationInclusion" value="NON_NULL"/>-->
+        <!--<property name="modulesToInstall" value="com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module" />-->
+    <!--</bean>-->
+
+    <!--<mvc:annotation-driven>-->
+        <!--<mvc:message-converters>-->
+            <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
+                <!--<property name="objectMapper" ref="customObjectMapper"/>-->
+            <!--</bean>-->
+        <!--</mvc:message-converters>-->
+    <!--</mvc:annotation-driven>-->
 
 
-    <!-- Arba galima viską vienoje vietoje aprašyti (truputi kitaip nurodyta savybės 'featuresToDisable' reikšmė:
+    <!-- 2) Arba galima viską vienoje vietoje aprašyti (truputi kitaip nurodyta savybės 'featuresToDisable' reikšmė: -->
 
-    <mvc:annotation-driven>
-        <mvc:message-converters>
-            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                <property name="objectMapper">
-                    <bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
-                        <property name="featuresToDisable">
-                            <array>
-                                <util:constant static-field="com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS"/>
-                            </array>
-                        </property>
-                        <property name="modulesToInstall" value="com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module" />
-                    </bean>
-                </property>
-            </bean>
-        </mvc:message-converters>
-    </mvc:annotation-driven>
+    <!--<mvc:annotation-driven>-->
+        <!--<mvc:message-converters>-->
+            <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
+                <!--<property name="objectMapper">-->
+                    <!--<bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">-->
+                        <!--<property name="featuresToDisable">-->
+                            <!--<array>-->
+                                <!--<util:constant static-field="com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS"/>-->
+                            <!--</array>-->
+                        <!--</property>-->
+                        <!--<property name="modulesToInstall" value="com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module" />-->
+                    <!--</bean>-->
+                <!--</property>-->
+            <!--</bean>-->
+        <!--</mvc:message-converters>-->
+    <!--</mvc:annotation-driven>-->
 
-    -->
+    <!-- 3) Arba galima aprayti JacksonConfig.java -->
 
 </beans>

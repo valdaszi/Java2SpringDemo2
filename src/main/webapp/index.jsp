@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Demo</title>
+    <title>Demo 2</title>
 </head>
 <body>
-    <h2>Spring Demo 2</h2>
+    <h2>Spring Demo 2 - JPA</h2>
 </body>
 </html>
