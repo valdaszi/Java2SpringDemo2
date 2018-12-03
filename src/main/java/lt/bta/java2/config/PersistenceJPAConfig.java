@@ -16,6 +16,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/*
+ * Kaip pakeisti PK i auto_increment jei yra nustatytas foreign_key (kaip kad employee lenteleje):
+ * SET FOREIGN_KEY_CHECKS = 0;
+ * ALTER TABLE employees MODIFY COLUMN emp_no INT AUTO_INCREMENT;
+ * SET FOREIGN_KEY_CHECKS = 1;
+ */
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories("lt.bta.java2.repositories")
@@ -34,12 +41,14 @@ public class PersistenceJPAConfig {
         return em;
     }
 
+    /*
+     * REIKIA PAKEISTI 'Username' IR 'Password'!!!
+     */
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        // ... serverTimezone=UTC
-        dataSource.setUrl("jdbc:mysql://localhost:3306/employees?useUnicode=yes&characterEncoding=UTF-8");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/employees?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC");
         dataSource.setUsername("java2");
         dataSource.setPassword("123");
         return dataSource;

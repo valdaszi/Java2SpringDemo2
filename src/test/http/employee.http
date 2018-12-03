@@ -5,6 +5,11 @@
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 
+
+#
+# REIKIA PAKEISTI UZKLAUSU URL!!!
+#
+
 POST http://localhost:8080/spring2/employee
 Accept: application/json
 Content-Type: application/json
