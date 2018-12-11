@@ -12,3 +12,4 @@
 
 - https://docs.spring.io/spring-data/jpa/docs/current/reference/html/
 
+- https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html
