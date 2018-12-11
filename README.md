@@ -1,7 +1,14 @@
 # Java2 Spring Demo 2 - JPA
 
-Reikia pasikeisti: 
+### Reikia pasikeisti
 
-- **lt.bta.java2.config.PersistenceJPAConfig.java** - Pakeisti prisijungimus prie DB
+- **lt.bta.java2.config.PersistenceJPAConfig.java** - pakeisti prisijungimus prie DB
 
-- **test/http/employee.http** - Pakeisti URL
+- **test/http/department.http, test/http/employee.http** - pakeisti URL
+
+### Dokumentacija
+
+- https://docs.spring.io/spring-data/data-commons/docs/current/reference/html/
+
+- https://docs.spring.io/spring-data/jpa/docs/current/reference/html/
+
