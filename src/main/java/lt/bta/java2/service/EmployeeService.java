@@ -49,7 +49,7 @@ public class EmployeeService {
     }
 
     @GetMapping("/hire/{hireDate}")
-    public ResponseEntity<List<Employee>> getBySku(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hireDate) {
+    public ResponseEntity<List<Employee>> getByHireDate(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hireDate) {
         return ResponseEntity.ok(employeeRepository.findByHireDate(hireDate));
     }
 
